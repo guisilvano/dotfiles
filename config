@@ -1,124 +1,220 @@
-## Configuration file for CAVA. Default values are commented out.  Use either ; or # for commenting.
-
-
-[general]
-
-# smoothing mode, can be normal, scientific or waves.
-mode = normal
- 
-# Framerate Default: 60. Accepts only non-negative values.
-; framerate = 60 
-
-# Sensitivity in  %. If you think the bars are to low/response is to little, try
-# increasing this value 200 means double height. Accepts only non-negative values.
-sensitivity = 30
-
-# Autosens will attempt to decrease sensitivity if cava peaks. 1 = on, 0 = off
-# overshoot allows bars to overshoot (in % of terminal height) without initiating autosens
-autosens = 1
-overshoot = 100
-
-# The number of bars (0-200). 0 (default) sets it to auto (fill up console).
-# width of bars and space between bars in number of characters. Default width 3 and space 1.
-bars = 0 
-bar_width = 0
-
-
-# Lower and higher cutoff frequencies for lowest and highest bars
-# the bandwith of the visualizer, defaults to 50 - 10000 Hz
-# Note: there is a minimum total bandwith of 43Mhz x number of bars. 
-# Cava will automatically increase the higher cuttoff if a too low band is specified.
-; lower_cutoff_freq = 50 
-; higher_cutoff_freq = 10000 
-
-
-
-[input]
-
-# method of capturing audio, possible methods are: 'pulse', 'alsa' or 'fifo'.
-# Defaults to 'pulse', 'alsa' or 'fifo', in that order, dependent on what support cava was built with
+# i3 config file (v4)
+#iraca
 #
-# All input methods uses the same config variable 'source' 
-# to define where it should get the audio.
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
 #
-# for pulseaudio 'source' will be the source. Default: 'auto', which uses the monitor source of the default sink
-# (all pulseaudio sinks(outputs) have 'monitor' sources(inputs) associated with them)
-# 
-# for alsa 'source' will be the capture device. Default: 'hw:Loopback,1'
-# for fifo 'source' will be the path to fifo-file. Default: '/tmp/mpd.fifo' 
-method = pulse
-source = auto
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
 
-; method = alsa  
-; source = hw:Loopback,1 
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+#font pango:monospace 8
 
-; method = fifo
-; source = /tmp/mpd.fifo
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:DejaVu Sans Mono 8
 
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
 
+# use these keys for focus, movement, and resize directions when reaching for
+# the arrows is not convenient
+set $up l
+set $down k
+set $left j
+set $right cedilla
 
-[output]
+# use Mouse+Mod1 to drag floating windows to their wanted position
+floating_modifier Mod1
 
-# ouput method may be ncurses, noncurses or raw. noncurses is for systems that does not suport ncurses. 
-# raw is a 16 bit data stream of the bar heights that can be used to send to other applications
-# raw defaults to 200 bars, can be adjusted in the bars option above
-; method = ncurses
+# start a terminal
+bindsym Mod1+Return exec i3-sensible-terminal
 
-# visual styles, may be 'stereo' or 'mono'. 
-# Stereo mirrors both channels with low frequencies in center.
-# Mono averages both channels and outputs left to right lowest to highest frequencies
-; style = stereo 
+# kill focused window
+bindsym Mod1+Shift+q kill
 
-# raw output target defaults to stdout, a fifo will be created if target does not exist
-; raw_target = /dev/stdout
+# kill selected window
+bindsym --release Mod1+shift+x exec xkill
 
-# raw data format, can be binary or ascii
-; data_format = binary
+# start dmenu (a program launcher)
+# bindsym Mod1+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym Mod1+d exec --no-startup-id i3-dmenu-desktop
 
-# binary bit format, can be '8bit' (0-255) or '16bit' (0-65530) 
-; bit_format = 16bit
+# change focus
+bindsym Mod1+$left focus left
+bindsym Mod1+$down focus down
+bindsym Mod1+$up focus up
+bindsym Mod1+$right focus right
 
-# ascii max value, in ascii mode range will run from 0 to value specified here
-; ascii_max_range = 1000
+# alternatively, you can use the cursor keys:
+bindsym Mod1+Left focus left
+bindsym Mod1+Down focus down
+bindsym Mod1+Up focus up
+bindsym Mod1+Right focus right
 
-# ascii delimiters, in ascii format each bar and frame is separated by a delimiters.
-# use decimal value in ascii table (i.e. 59 = ';' and 10 = '\n' (line feed)) 
-; bar_delimiter = 59
-; frame_delimiter = 10
+# move focused window
+bindsym Mod1+Shift+$left move left
+bindsym Mod1+Shift+$down move down
+bindsym Mod1+Shift+$up move up
+bindsym Mod1+Shift+$right move right
 
+# alternatively, you can use the cursor keys:
+bindsym Mod1+Shift+Left move left
+bindsym Mod1+Shift+Down move down
+bindsym Mod1+Shift+Up move up
+bindsym Mod1+Shift+Right move right
 
+# split in horizontal orientation
+bindsym Mod1+h split h
 
+# split in vertical orientation
+bindsym Mod1+v split v
 
-[color]
+# enter fullscreen mode for the focused container
+bindsym Mod1+f fullscreen toggle
 
-# supported colors are: red, green, yellow, magenta, cyan, white, blue, black.
-; background = black
-; foreground = cyan
+# change container layout (stacked, tabbed, toggle split)
+bindsym Mod1+s layout stacking
+bindsym Mod1+w layout tabbed
+bindsym Mod1+e layout toggle split
 
+# toggle tiling / floating
+bindsym Mod1+Shift+space floating toggle
 
-[smoothing]
+# change focus between tiling / floating windows
+bindsym Mod1+space focus mode_toggle
 
-# multiplier for the integral smoothing calculations. Takes values from 0 - 0.99.
-# Higher values means smoother, but less precise. 0 to disable.
-integral = 0
+# focus the parent container
+bindsym Mod1+a focus parent
 
-# disables or enables the so-called "Monstercat smoothing". Default: 1. Set to 0 to disable.
-monstercat = 0
+# focus the child container
+#bindsym Mod1+d focus child
 
-# Set gravity multiplier for "drop off". Higher values means bars will drop faster. 
-# Accepts only non-negative values. 0.5 means half gravity, 2 means double. Set to 0 to disable "drop off".
-gravity = 2
+# move the currently focused window to the scratchpad
+bindsym Mod1+Shift+minus move scratchpad
 
-# In bar height, bars that would have been lower that this will not be drawn.
-; ignore = 0 
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym Mod1+minus scratchpad show
 
-[eq]
+# switch to workspace
+bindsym Mod1+1 workspace 1
+bindsym Mod1+2 workspace 2
+bindsym Mod1+3 workspace 3
+bindsym Mod1+4 workspace 4
+bindsym Mod1+5 workspace 5
+bindsym Mod1+6 workspace 6
+bindsym Mod1+7 workspace 7
+bindsym Mod1+8 workspace 8
+bindsym Mod1+9 workspace 9
+bindsym Mod1+0 workspace 10
 
-# This one is tricky. You can have as much keys as you want. 
-# remember to uncomment more then one key! More keys = more precision.
-# Look at readme.md on github for further explanations and examples.
-; 1 = 1 # bass
-; 2 = 1
-; 3 = 1 # midtone
-; 4 = 1
-; 5 = 1 # treble
+# move focused container to workspace
+bindsym Mod1+Shift+1 move container to workspace 1
+bindsym Mod1+Shift+2 move container to workspace 2
+bindsym Mod1+Shift+3 move container to workspace 3
+bindsym Mod1+Shift+4 move container to workspace 4
+bindsym Mod1+Shift+5 move container to workspace 5
+bindsym Mod1+Shift+6 move container to workspace 6
+bindsym Mod1+Shift+7 move container to workspace 7
+bindsym Mod1+Shift+8 move container to workspace 8
+bindsym Mod1+Shift+9 move container to workspace 9
+bindsym Mod1+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym Mod1+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym Mod1+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+
+mode "resize" {
+        # These bindings trigger as soon as you enter the  resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym Mod1+r mode "resize"
+
+# ROFI PROGRAM LAUNCHER
+bindsym Mod1+d exec rofi -show run -width "25" -lines "4" -font "DejaVu Sans Mono Book 12" -opacity "75" -bw "5" -color-enabled -fg "#000000" -separator-style solid -hide-scrollbar
+
+# WALLPAPER
+exec_always --no-startup-id feh --randomize --bg-fill /home/gui/Pictures/wallpapersCYAN+MAGENTA
+
+# class                 border  backgr. text    indicator   child_border
+client.focused          #7c20ad	#285577 #ffffff #7c20ad	    #a43ddb
+client.focused_inactive #333333 #5f676a #ffffff #484e50	    #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e	    #444444
+client.urgent           #2f343a #900000 #ffffff #900000	    #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000	    #0c0c0c
+client.background       #ffffff
+
+#gaps
+for_window [class="^.*"] border pixel 5
+gaps inner 15
+gaps outer 0
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3status
+        tray_output primary
+
+	position top
+
+	colors {
+	   
+	    background		#444444
+
+	    focused_workspace	#444444	#20ad7c	#ffffff
+	    inactive_workspace	#444444	#444444	#666666
+	    urgent_workspace	#2f343a #f0544c	#ffffff
+	}
+}
+
+exec_always --no-startup-id compton
+exec_always --no-startup-id dunst
+
+#######################################################################
+# automatically start i3-config-wizard to offer the user to create a
+# keysym-based config which used their favorite modifier (alt or windows)
+#
+# i3-config-wizard will not launch if there already is a config file
+# in ~/.i3/config.
+#
+# Please remove the following exec line:
+#######################################################################
+#exec i3-config-wizard
