@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -97,12 +97,17 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
+alias wifi='nmtui-connect'
+alias rf='redshift &'
+alias i3config='sudo vim ~/.i3/config /etc/i3status.conf ~/.config/dunst/dunstrc ~/.config/cava/config -p'
+# alias win"$@"='cs /mnt/c/Users/gui"$@"'
+alias grade='evince ~/Documents/grade.pdf'
+alias stdw='sudo shutdown now'
+alias rm='rm -I'
 
 function cs (){
 	cd "$@" && la
 }
-
-alias win"$@"='cs /mnt/c/Users/gui"$@"'
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
