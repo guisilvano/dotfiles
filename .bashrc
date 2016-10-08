@@ -104,6 +104,7 @@ alias i3config='sudo vim ~/.i3/config /etc/i3status.conf ~/.config/dunst/dunstrc
 alias grade='evince ~/Documents/grade.pdf'
 alias stdw='sudo shutdown now'
 alias rm='rm -i'
+alias RM='rm'
 
 # Change and Show
 function cs (){
