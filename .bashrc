@@ -99,7 +99,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 alias wifi='nmtui-connect'
 alias rf='redshift &'
-alias i3config='sudo vim ~/.i3/config /etc/i3status.conf ~/.config/dunst/dunstrc ~/.config/cava/config -p'
+alias i3config='sudo vim ~/.i3/config /etc/i3status.conf ~/.config/dunst/dunstrc ~/.config/cava/config ~/.config/compton.conf -p'
 # alias win"$@"='cs /mnt/c/Users/gui"$@"'
 alias grade='evince ~/Documents/grade.pdf'
 alias stdw='sudo shutdown now'
