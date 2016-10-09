@@ -1,5 +1,5 @@
 # i3 config file (v4)
-#iraca
+
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 #
@@ -150,15 +150,19 @@ mode "resize" {
 }
 
 # ROFI PROGRAM LAUNCHER
-bindsym Mod1+d exec rofi -show run -width "25" -lines "4" -font "DejaVu Sans Mono Book 12" -opacity "75" -bw "5" -color-enabled -fg "#000000" -separator-style solid -hide-scrollbar
+bindsym Mod1+d exec rofi -show run -width "25" -lines "4" -font "DejaVu Sans Mono Book 12" -opacity "75" -bw "5" -bg "$bg.color" -bc "#3ddba4" -hlbg "$bg.color" -bgalt "#252a33" -fg "#d3dae3" -hlfg "#3DDBA4" -separator-style solid -hide-scrollbar
 
 # RANDOM WALLPAPER			    mode      folder
 exec_always --no-startup-id feh --randomize --bg-fill /home/gui/Pictures/wallpapersCYAN+MAGENTA
 
-# class                 border	    backgr.	text	    indicator	    child_border
+# SET COLOR ALIASES
+set $bg.color #252a33
+set $fg.color #d3dae3
+
+# class                 border	    backgr.	text	    indicator	child_border
 client.focused          #7c20ad	    #285577	#ffffff	    #7c20ad     #a43ddb
-client.focused_inactive #333333	    #5f676a	#ffffff	    #484e50     #5f676a
-client.unfocused        #333333	    #222222	#888888	    #292d2e     #444444
+client.focused_inactive #333333	    #5f676a	#ffffff	    #484e50     $bg.color
+client.unfocused        #333333	    #222222	#888888	    #292d2e	$bg.color 
 client.urgent           #2f343a	    #900000	#ffffff	    #900000     #900000
 client.placeholder      #000000	    #0c0c0c	#ffffff	    #000000	#0c0c0c
 client.background       #ffffff
@@ -173,16 +177,19 @@ gaps outer 0
 bar {
         status_command i3status
         tray_output primary
+	separator_symbol "//"
 
 	position top
 
 	colors {
 	   
-	    background		#444444
+	    background		$bg.color
+	    statusline		$fg.color	
+	    separator		#666666
 
-	    # class			border	        background	font
-	    focused_workspace	#444444		#a43ddb		#ffffff
-	    inactive_workspace	#444444		#444444		#666666
+	    # class		border	        background	font
+	    focused_workspace	#252a33		#a43ddb		#d3dae3
+	    inactive_workspace	#252a33		#252a33		#666666
 	    urgent_workspace	#2f343a	        #f0544c		#ffffff
 	}
 }
