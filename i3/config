@@ -18,7 +18,7 @@ font pango:DejaVu Sans Mono 8
 set $up l
 set $down k
 set $left j
-set $right cedilla
+set $right ccedilla
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod1
@@ -133,16 +133,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym $left       resize shrink width 10 px or 10 ppt
-        bindsym $down       resize grow height 10 px or 10 ppt
-        bindsym $up         resize shrink height 10 px or 10 ppt
-        bindsym $right      resize grow width 10 px or 10 ppt
+        bindsym $left       resize shrink width 5 px or 5 ppt
+        bindsym $down       resize grow height 5 px or 5 ppt
+        bindsym $up         resize shrink height 5 px or 5 ppt
+        bindsym $right      resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left        resize shrink width 10 px or 10 ppt
-        bindsym Down        resize grow height 10 px or 10 ppt
-        bindsym Up          resize shrink height 10 px or 10 ppt
-        bindsym Right       resize grow width 10 px or 10 ppt
+        bindsym Left        resize shrink width 5 px or 5 ppt
+        bindsym Down        resize grow height 5 px or 5 ppt
+        bindsym Up          resize shrink height 5 px or 5 ppt
+        bindsym Right       resize grow width 5 px or 5 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -150,10 +150,12 @@ mode "resize" {
 }
 
 # ROFI PROGRAM LAUNCHER
-bindsym Mod1+d exec rofi -show run -width "25" -lines "4" -font "DejaVu Sans Mono Book 12" -opacity "75" -bw "5" -bg "$bg.color" -bc "#3ddba4" -hlbg "$bg.color" -bgalt "#252a33" -fg "#d3dae3" -hlfg "#3DDBA4" -separator-style solid -hide-scrollbar
+bindsym Mod1+d exec rofi -show run -width "25" -lines "4" -font "DejaVu Sans Mono Book 10" -opacity "75" -bw "2" -bg "$bg.color" -bc "#3ddba4" -hlbg "$bg.color" -bgalt "#252a33" -fg "#d3dae3" -hlfg "#3DDBA4" -separator-style solid -hide-scrollbar
+bindcode 133 exec rofi -show run -width "25" -lines "4" -font "DejaVu Sans Mono Book 10" -opacity "75" -bw "2" -bg "$bg.color" -bc "#3ddba4" -hlbg "$bg.color" -bgalt "#252a33" -fg "#d3dae3" -hlfg "#3DDBA4" -separator-style solid -hide-scrollbar
 
-# RANDOM WALLPAPER			    mode      folder
-exec_always --no-startup-id feh --randomize --bg-fill /home/gui/Pictures/wallpapersCYAN+MAGENTA
+# RANDOM WALLPAPER
+exec --no-startup-id feh --randomize --bg-fill /home/gui/Pictures/wallpapersCYAN+MAGENTA
+bindsym Mod1+shift+w exec feh --randomize --bg-fill /home/gui/Pictures/wallpapersCYAN+MAGENTA
 
 # SET COLOR ALIASES
 set $bg.color #252a33
@@ -168,8 +170,9 @@ client.placeholder      #000000	    #0c0c0c	#ffffff	    #000000	#0c0c0c
 client.background       #ffffff
 
 #gaps
-for_window [class="^.*"] border pixel 5
-gaps inner 15
+new_window pixel
+for_window [class="^.*"] border pixel 2 
+gaps inner 10
 gaps outer 0
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -188,11 +191,12 @@ bar {
 	    separator		#666666
 
 	    # class		border	        background	font
-	    focused_workspace	#252a33		#a43ddb		#d3dae3
-	    inactive_workspace	#252a33		#252a33		#666666
+	    focused_workspace	#252a33		#404552		#d3dae3
+	    inactive_workspace	#252a33		#252a33		#404552
 	    urgent_workspace	#2f343a	        #f0544c		#ffffff
 	}
 }
 
-exec_always --no-startup-id compton
-exec_always --no-startup-id dunst
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id compton
+exec --no-startup-id dunst
