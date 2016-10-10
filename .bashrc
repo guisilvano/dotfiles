@@ -104,11 +104,13 @@ alias i3config='sudo vim ~/.i3/config /etc/i3status.conf ~/.config/dunst/dunstrc
 alias grade='evince ~/Documents/grade.pdf'
 alias stdw='sudo shutdown now'
 
+alias rm='dl'
+
 # Safe rm
 function dl (){
     read -p "Delete? (y/n) " ANS
     if [ $ANS = "y" ]; then
-	rm "$@"
+	\rm -v -f -r "$@"
     else
 	echo "Abort operation."
     fi
