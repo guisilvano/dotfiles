@@ -104,6 +104,8 @@ alias i3config='sudo vim ~/.i3/config /etc/i3status.conf ~/.config/dunst/dunstrc
 alias grade='evince ~/Documents/grade.pdf'
 alias stdw='sudo shutdown now'
 
+# script aliases
+alias chout='chOutput.py'
 alias rm='dl'
 
 # Safe rm
