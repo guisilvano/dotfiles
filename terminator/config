@@ -1,0 +1,40 @@
+[global_config]
+  borderless = True
+  broadcast_default = off
+  geometry_hinting = False
+  homogeneous_tabbar = False
+  scroll_tabbar = True
+  suppress_multiple_term_dialog = True
+  tab_position = hidden
+  title_font = DejaVu Sans Mono 9
+  title_use_system_font = False
+  window_state = hidden
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = None
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#2c3d4d"
+    background_darkness = 0.81
+    background_image = None
+    background_type = transparent
+    font = DejaVu Sans Mono 10
+    foreground_color = "#effbf5"
+    icon_bell = False
+    palette = "#2c3d4d:#dc322f:#859900:#b58900:#c9d5bc:#d33682:#9fcbcc:#c9d5bc:#2c3d4d:#cb4b16:#6c939b:#8b9ca5:#98b7b8:#6c71c4:#5a7588:#dbe8d4"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
+  [[New Profile]]
+    background_image = None
+  [[New Profile 2]]
+    background_image = None
