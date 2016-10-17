@@ -121,9 +121,9 @@ bindsym Mod1+Shift+r restart
 bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # media keys
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 3 +1%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 3 -1%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 3 toggle
 
 bindsym Mod1+r mode "resize"
 mode "resize" {
@@ -149,24 +149,29 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+# SET COLOR ALIASES
+set $bg.color	#2c3d4d
+set $fg.color	#effbf5
+set $bd.color	#eeeeec
+set $alt.color	#3d6c81
+
 # ROFI PROGRAM LAUNCHER
 bindsym Mod1+d exec rofi -show run -width "25" -lines "4" -font "DejaVu Sans Mono Book 10" -opacity "75" -bw "2" -bg "$bg.color" -bc "#3ddba4" -hlbg "$bg.color" -bgalt "#252a33" -fg "#d3dae3" -hlfg "#3DDBA4" -separator-style solid -hide-scrollbar
-bindcode 133 exec rofi -show run -width "25" -lines "4" -font "DejaVu Sans Mono Book 10" -opacity "75" -bw "2" -bg "$bg.color" -bc "#3ddba4" -hlbg "$bg.color" -bgalt "#252a33" -fg "#d3dae3" -hlfg "#3DDBA4" -separator-style solid -hide-scrollbar
+bindcode 133 exec rofi -show run -width "25" -lines "4" -font "DejaVu Sans Mono Book 10" -opacity "75" -bw "2" -bg "$bg.color" -bc "bg.color" -hlbg "$bg.color" -bgalt "#252a33" -fg "$fg.color" -hlfg "#3DDBA4" -separator-style solid -hide-scrollbar
+
+# WALLPAPER
+exec_always --no-startup-id feh --bg-center --no-xinerama /home/gui-pc/Pictures/1427296302235.jpg
 
 # RANDOM WALLPAPER
-exec --no-startup-id feh --randomize --bg-fill /home/gui/Pictures/wallpapersCYAN+MAGENTA
-bindsym Mod1+shift+w exec feh --randomize --bg-fill /home/gui/Pictures/wallpapersCYAN+MAGENTA
-
-# SET COLOR ALIASES
-set $bg.color #252a33
-set $fg.color #d3dae3
+# exec --no-startup-id feh --randomize --bg-fill /home/gui/Pictures/wallpapersCYAN+MAGENTA
+# bindsym Mod1+shift+w exec feh --randomize --bg-fill /home/gui/Pictures/wallpapersCYAN+MAGENTA
 
 # class                 border	    backgr.	text	    indicator	child_border
-client.focused          #7c20ad	    #285577	#ffffff	    #7c20ad     #a43ddb
+client.focused          #7c20ad	    #285577	#ffffff	    #bbbbb9     $fg.color
 client.focused_inactive #333333	    #5f676a	#ffffff	    #484e50     $bg.color
-client.unfocused        #333333	    #222222	#888888	    #292d2e	$bg.color 
+client.unfocused        #333333	    #222222	#888888	    #292d2e		$bg.color 
 client.urgent           #2f343a	    #900000	#ffffff	    #900000     #900000
-client.placeholder      #000000	    #0c0c0c	#ffffff	    #000000	#0c0c0c
+client.placeholder      #000000	    #0c0c0c	#ffffff	    #000000		#0c0c0c
 client.background       #ffffff
 
 #gaps
@@ -188,11 +193,12 @@ bar {
 	   
 	    background		$bg.color
 	    statusline		$fg.color	
-	    separator		#666666
+	    separator		$alt.color
 
-	    # class		border	        background	font
-	    focused_workspace	#252a33		#404552		#d3dae3
-	    inactive_workspace	#252a33		#252a33		#404552
+	    # class				border	    background	font
+	    focused_workspace	$bg.color	#7cb4c2		$fg.color
+	    inactive_workspace	$bg.color	$bg.color	$fg.color
+	    active_workspace	$bg.color	$alt.color	$fg.color
 	    urgent_workspace	#2f343a	        #f0544c		#ffffff
 	}
 }
