@@ -106,7 +106,7 @@ alias stdw='sudo shutdown now'
 
 # script aliases
 alias chout='chOutput.py'
-alias rm='dl'
+#alias rm='dl'
 
 # Safe rm
 function dl (){
