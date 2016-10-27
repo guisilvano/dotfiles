@@ -169,9 +169,9 @@ exec_always --no-startup-id feh --bg-center --no-xinerama /home/gui-pc/Pictures/
 # class                 border	    backgr.	text	    indicator	child_border
 client.focused          #7c20ad	    #285577	#ffffff	    #bbbbb9     $fg.color
 client.focused_inactive #333333	    #5f676a	#ffffff	    #484e50     $bg.color
-client.unfocused        #333333	    #222222	#888888	    #292d2e		$bg.color 
+client.unfocused        #333333	    #222222	#888888	    #292d2e	$bg.color 
 client.urgent           #2f343a	    #900000	#ffffff	    #900000     #900000
-client.placeholder      #000000	    #0c0c0c	#ffffff	    #000000		#0c0c0c
+client.placeholder      #000000	    #0c0c0c	#ffffff	    #000000	#0c0c0c
 client.background       #ffffff
 
 #gaps
