@@ -1,8 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/gui-pc/.oh-my-zsh
+  export ZSH=/home/gui/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -82,16 +82,35 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+# some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-
+alias wifi='nmtui-connect'
 alias rf='redshift &'
 alias i3config='sudo vim ~/.i3/config /etc/i3status.conf ~/.config/dunst/dunstrc ~/.config/cava/config ~/.config/compton.conf -p'
+# alias win"$@"='cs /mnt/c/Users/gui"$@"'
+alias grade='evince ~/Documents/grade.pdf'
+alias stdw='sudo shutdown now'
+ 
+# script aliases
+#alias rm='dl'
 
+# Safe rm
+function dl (){
+    read -p "Delete? (y/n) " = ANS
+    if [ $ANS = "y"  ]; then
+        \rm -v -f -r "$@"
+    else
+        echo "Abort operation."
+    fi 
+}
 # Change and Show
 function cs (){
-	cd "$@" && la
+        cd "$@" && la 
 }
+
+# don't print highlighted % at EOL
+setopt PROMPT_CR
+setopt PROMPT_SP
+export PROMPT_EOL_MARK=""
