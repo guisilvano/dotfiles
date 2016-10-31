@@ -107,7 +107,7 @@ function dl (){
 }
 # Change and Show
 function cs (){
-        cd "$@" && la 
+        cd "$@" && l 
 }
 
 # don't print highlighted % at EOL
