@@ -6,5 +6,7 @@ cp -v ~/.config/compton.conf ./compton/compton.conf
 cp -v ~/.i3/config ./i3/config
 cp -v /etc/i3status.conf ./i3/i3status.conf
 cp -v ~/bin/* ./scripts
+cp -v ~/.zshrc ./.zshrc
+
 
 echo "Done!"
