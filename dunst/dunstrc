@@ -1,5 +1,5 @@
 [global]
-    font = Monospace 8
+    font = Terminess Powerline Regular 8
 
     # Allow a small subset of html markup in notifications and formats:
     #   <b>bold</b>
@@ -40,7 +40,7 @@
     # window allows bounces back and forth.
     # This option conflicts with "word_wrap".
     # Set to 0 to disable.
-    bounce_freq = 0
+    bounce_freq = 5
 
     # Show age of message if message is older than show_age_threshold
     # seconds.
@@ -49,7 +49,7 @@
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
-    word_wrap = yes
+    word_wrap = no
 
     # Ignore newlines '\n' in notifications.
     ignore_newline = no
@@ -67,11 +67,11 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "300x5-30+20"
+    geometry = "500x5-30+20"
 
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
-    shrink = no
+    shrink = yes
 
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
@@ -81,7 +81,7 @@
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
     # Set to 0 to disable.
-    idle_threshold = 120
+    idle_threshold = 10
 
     # Which monitor should the notifications be displayed on.
     monitor = 0
@@ -136,7 +136,6 @@
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
     separator_color = frame
-
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
     # automatically after a crash.
@@ -156,7 +155,7 @@
 
 [frame]
     width = 2
-    color = "#3DDBA4"
+    color = "#d1d1d1"
 
 [shortcuts]
 
@@ -182,18 +181,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
+    background = "#1d1d1d"
+    foreground = "#d1d1d1"
     timeout = 10
 
 [urgency_normal]
-    background = "#262626"
-    foreground = "#ffffff"
+    background = "#1d1d1d"
+    foreground = "#d1d1d1"
     timeout = 5
 
 [urgency_critical]
-    background = "#900000"
-    foreground = "#ffffff"
+    background = "#c795ae"
+    foreground = "#1d1d1d"
     timeout = 0
 
 

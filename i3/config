@@ -1,17 +1,7 @@
-# i3 config file (v4)
-
-#
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
-#
-# This config file uses keycodes (bindsym) and was written for the QWERTY
-# layout.
-#
-# To get a config file with the same key positions, but for your current
-# layout, use the i3-config-wizard
-#
+# i3 config file ~/.i3/config
 
 # system font
-font pango:DejaVu Sans Mono 8
+font pango: Terminess PowerLine Regular 8
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
@@ -25,6 +15,7 @@ floating_modifier Mod1
 
 # start a terminal
 bindsym Mod1+Return exec i3-sensible-terminal
+for_window [class="Gnome-terminal"] floating enable, border pixel
 
 # kill focused window
 bindsym Mod1+Shift+q kill
@@ -82,19 +73,12 @@ bindsym Mod1+a focus parent
 # focus the child container
 #bindsym Mod1+d focus child
 
-# move the currently focused window to the scratchpad
-bindsym Mod1+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym Mod1+minus scratchpad show
-
 # switch to workspace
-bindsym Mod1+1 workspace 1
-bindsym Mod1+2 workspace 2
-bindsym Mod1+3 workspace 3
-bindsym Mod1+4 workspace 4
-bindsym Mod1+5 workspace 5
+bindsym Mod1+1 workspace 1:$ws1
+bindsym Mod1+2 workspace 2:$ws2
+bindsym Mod1+3 workspace 3:$ws3
+bindsym Mod1+4 workspace 4:$ws4
+bindsym Mod1+5 workspace 5:$ws5
 bindsym Mod1+6 workspace 6
 bindsym Mod1+7 workspace 7
 bindsym Mod1+8 workspace 8
@@ -102,16 +86,30 @@ bindsym Mod1+9 workspace 9
 bindsym Mod1+0 workspace 10
 
 # move focused container to workspace
-bindsym Mod1+Shift+1 move container to workspace 1
-bindsym Mod1+Shift+2 move container to workspace 2
-bindsym Mod1+Shift+3 move container to workspace 3
-bindsym Mod1+Shift+4 move container to workspace 4
-bindsym Mod1+Shift+5 move container to workspace 5
+bindsym Mod1+Shift+1 move container to workspace 1:$ws1
+bindsym Mod1+Shift+2 move container to workspace 2:$ws2
+bindsym Mod1+Shift+3 move container to workspace 3:$ws3
+bindsym Mod1+Shift+4 move container to workspace 4:$ws4
+bindsym Mod1+Shift+5 move container to workspace 5:$ws5
 bindsym Mod1+Shift+6 move container to workspace 6
 bindsym Mod1+Shift+7 move container to workspace 7
 bindsym Mod1+Shift+8 move container to workspace 8
 bindsym Mod1+Shift+9 move container to workspace 9
 bindsym Mod1+Shift+0 move container to workspace 10
+
+# workspace names
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+
+# open applications on specific workspaces
+assign [class="Firefox"] 1:$ws1
+#assign [class="Gnome-terminal"] 2:$ws2
+#assign [class="Thunar"] 3:$ws3
+assign [class="Transmission"] 4:$ws4
+assign [class="Steam"] 5:$ws5
 
 # reload the configuration file
 bindsym Mod1+Shift+c reload
@@ -121,9 +119,19 @@ bindsym Mod1+Shift+r restart
 bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # media keys
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 3 +1%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 3 -1%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 3 toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioNext exec ~/bin/media-keys.sh -n
+bindsym XF86AudioPrev exec ~/bin/media-keys.sh -r
+bindsym XF86AudioPlay exec ~/bin/media-keys.sh -u
+
+# now playing (cmus)
+bindsym Mod1+shift+n exec ~/proj/cmus-now-playing-notification/nowPlaying.sh
+
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 3 +1%
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 3 -1%
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 3 toggle
 
 bindsym Mod1+r mode "resize"
 mode "resize" {
@@ -150,35 +158,39 @@ mode "resize" {
 }
 
 # SET COLOR ALIASES
-set $bg.color	#2c3d4d
-set $fg.color	#effbf5
-set $bd.color	#eeeeec
-set $alt.color	#3d6c81
+set $bg.color	#1d1d1d
+set $fg.color	#d1d1d1
+set $bd.color	#d1d1d1
+set $alt.color	#585858
+set $alt.color2	#ae95c7
+set $warn.color	#c795ae
+
+# SCREENSHOT
+bindcode 107 exec scrot -e 'mv $f /home/gui/Pictures/ss/$f'
 
 # ROFI PROGRAM LAUNCHER
-bindsym Mod1+d exec rofi -show run -width "25" -lines "4" -font "DejaVu Sans Mono Book 10" -opacity "75" -bw "2" -bg "$bg.color" -bc "#3ddba4" -hlbg "$bg.color" -bgalt "#252a33" -fg "#d3dae3" -hlfg "#3DDBA4" -separator-style solid -hide-scrollbar
-bindcode 133 exec rofi -show run -width "25" -lines "4" -font "DejaVu Sans Mono Book 10" -opacity "75" -bw "2" -bg "$bg.color" -bc "bg.color" -hlbg "$bg.color" -bgalt "#252a33" -fg "$fg.color" -hlfg "#3DDBA4" -separator-style solid -hide-scrollbar
+bindcode 133 exec rofi -show run -width "25" -lines "4" -font "Terminess Regular 10" -opacity "75" -bw "2" -bc "$bd.color" -bg "$bg.color" -bc "bg.color" -hlbg "$alt.color" -bgalt "$bg.color" -fg "$fg.color" -hlfg "$fg.color" -separator-style solid -hide-scrollbar
 
 # WALLPAPER
-exec_always --no-startup-id feh --bg-center --no-xinerama /home/gui-pc/Pictures/1427296302235.jpg
+#exec_always --no-startup-id feh --bg-center --no-xinerama /home/gui/Pictures/wallpapersCYAN+MAGENTA/u92v3Mt.jpg
 
 # RANDOM WALLPAPER
-# exec --no-startup-id feh --randomize --bg-fill /home/gui/Pictures/wallpapersCYAN+MAGENTA
-# bindsym Mod1+shift+w exec feh --randomize --bg-fill /home/gui/Pictures/wallpapersCYAN+MAGENTA
+exec --no-startup-id feh --randomize --bg-fill /home/gui/Pictures/wallpapersBW
+bindsym Mod1+shift+w exec feh --randomize --bg-fill /home/gui/Pictures/wallpapersBW
 
 # class                 border	    backgr.	text	    indicator	child_border
-client.focused          #7c20ad	    #285577	#ffffff	    #bbbbb9     $fg.color
-client.focused_inactive #333333	    #5f676a	#ffffff	    #484e50     $bg.color
+client.focused          $bd.color   $bg.color	$fg.color   $alt.color2	$bd.color
+client.focused_inactive $alt.color  $bg.color	$fg.color   #484e50     $alt.color
 client.unfocused        #333333	    #222222	#888888	    #292d2e	$bg.color 
-client.urgent           #2f343a	    #900000	#ffffff	    #900000     #900000
+client.urgent           #2f343a	    #900000	#ffffff	    #warn.color	$warn.color
 client.placeholder      #000000	    #0c0c0c	#ffffff	    #000000	#0c0c0c
 client.background       #ffffff
 
 #gaps
 new_window pixel
-for_window [class="^.*"] border pixel 2 
-gaps inner 10
-gaps outer 0
+for_window [class="^.*"] border pixel 2
+gaps inner 4
+gaps outer 6
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -186,6 +198,7 @@ bar {
         status_command i3status
         tray_output primary
 	separator_symbol "//"
+	strip_workspace_numbers yes
 
 	position top
 
@@ -195,13 +208,16 @@ bar {
 	    statusline		$fg.color	
 	    separator		$alt.color
 
-	    # class				border	    background	font
-	    focused_workspace	$bg.color	#7cb4c2		$fg.color
+	    # class		border		background	font
+	    focused_workspace	$bg.color	$alt.color	$fg.color
 	    inactive_workspace	$bg.color	$bg.color	$fg.color
 	    active_workspace	$bg.color	$alt.color	$fg.color
-	    urgent_workspace	#2f343a	        #f0544c		#ffffff
+	    urgent_workspace	$bg.color	$warn.color	#ffffff
 	}
 }
+
+for_window [class="Thunar"] floating enable, border pixel
+bindsym Mod1+t exec Thunar
 
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id compton
