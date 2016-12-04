@@ -14,7 +14,8 @@ set $right ccedilla
 floating_modifier Mod1
 
 # start a terminal
-bindsym Mod1+Return exec i3-sensible-terminal
+bindsym Mod1+Return exec gnome-terminal
+bindsym Mod1+Shift+Return exec gnome-terminal --geometry=100x50
 for_window [class="Gnome-terminal"] floating enable, border pixel
 
 # kill focused window
@@ -169,14 +170,15 @@ set $warn.color	#c795ae
 bindcode 107 exec scrot -e 'mv $f /home/gui/Pictures/ss/$f'
 
 # ROFI PROGRAM LAUNCHER
-bindcode 133 exec rofi -show run -width "25" -lines "4" -font "Terminess Regular 10" -opacity "75" -bw "2" -bc "$bd.color" -bg "$bg.color" -bc "bg.color" -hlbg "$alt.color" -bgalt "$bg.color" -fg "$fg.color" -hlfg "$fg.color" -separator-style solid -hide-scrollbar
+bindcode 133 exec rofi -show run -fullscreen -padding "155" -lines "4" -line-margin 10 -location 7  -font "Terminess Regular 10" -opacity "50" -bg "$bg.color" -bw 0 -bc black -hlbg "$alt.color" -bgalt "$bg.color" -fg "$fg.color" -hlfg "$fg.color" -separator-style solid -hide-scrollbar
 
 # WALLPAPER
 #exec_always --no-startup-id feh --bg-center --no-xinerama /home/gui/Pictures/wallpapersCYAN+MAGENTA/u92v3Mt.jpg
 
 # RANDOM WALLPAPER
-exec --no-startup-id feh --randomize --bg-fill /home/gui/Pictures/wallpapersBW
-bindsym Mod1+shift+w exec feh --randomize --bg-fill /home/gui/Pictures/wallpapersBW
+set $wpfolder wallpapers1
+# exec --no-startup-id feh --randomize --bg-fill /home/gui/Pictures/$wpfolder
+bindsym Mod1+shift+w exec feh --randomize --bg-fill /home/gui/Pictures/$wpfolder
 
 # class                 border	    backgr.	text	    indicator	child_border
 client.focused          $bd.color   $bg.color	$fg.color   $alt.color2	$bd.color
@@ -195,12 +197,13 @@ gaps outer 6
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
-        tray_output primary
+	status_command polybar Bar
+	tray_output primary
 	separator_symbol "//"
 	strip_workspace_numbers yes
 
 	position top
+	mode hide
 
 	colors {
 	   
@@ -220,5 +223,5 @@ for_window [class="Thunar"] floating enable, border pixel
 bindsym Mod1+t exec Thunar
 
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id compton
 exec --no-startup-id dunst
+exec --no-startup-id compton
