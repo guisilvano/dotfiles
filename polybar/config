@@ -20,19 +20,19 @@ bottom = false
 dock = false
 wm-restack = i3
 width = 100%
-height = 28
+height = 22
 
 enable-ipc = true
 
-padding-left = 1
+padding-left = 0
 padding-right = 1
 
 module-margin-right = 1
-module-margin-left = 1
+module-margin-left = 0
 
 modules-right = filesystem battery date menu0
 modules-center = mpd volume
-modules-left = wlan eth cpu memory temperature
+modules-left = i3 wlan eth cpu memory
 
 background = #66090909
 foreground = ${colors.white}
@@ -49,6 +49,7 @@ tray-padding =
 font-0 = terminus:size=8;0
 font-1 = FontAwesome:size=10;0
 font-2 = TakaoGothic:weight=bold:size=10;0
+font-3 = FontAwesome:size=8;0
 
 [module/xwindow]
 type = internal/xwindow
@@ -61,8 +62,8 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-; mount-1 = /home
-; mount-2 = /invalid/mountpoint
+;mount-1 = /home
+;mount-2 = /invalid/mountpoint
 
 label-mounted =  %free%
 label-mounted-underline = ${colors.white}
@@ -98,20 +99,30 @@ type = internal/i3
 format = <label-state>
 index-sort = true
 
-label-focused = %index%
-label-focused-background = ${colors.gray}
+label-focused-font = 4
+label-unfocused-font = 4
+label-urgent-font = 4
+label-visible-font = 4 
+
+label-focused = 
+;label-focused = %index%
+;label-focused-background = ${colors.gray}
 label-focused-padding = 1
 
-label-unfocused = %index%
+label-unfocused = 
+;label-unfocused = %index%
 label-unfocused-padding = 1
-label-unfocused-background = ${colors.black}
+;label-unfocused-background = ${colors.black}
 label-unfocused-underlinde = ${colors.white}
 
-label-urgent = %index%!
-label-urgent-background = ${colors.red}
-label-urgent-padding = 2
+label-urgent = 
+;label-urgent = %index%!
+;label-urgent-background = ${colors.red}
+label-urgent-padding = 1
+label-urgent-foreground = ${colors.red}
 
-label-visible = %index%
+label-visible = 
+;label-visible = %index%
 label-visible-foreground = ${colors.white}
 label-visible-padding = 1
 
@@ -130,16 +141,16 @@ format-offline = <label-offline>
 label-offline =  no music
 label-offline-foreground = ${colors.gray}
 
-label-song =   %artist% - %title%
+label-song = %artist% - %title%
 label-song-maxlen = 95
 label-song-ellipsis = true
 
-icon-prev = 
+icon-prev = 
 icon-seekb = <<
 icon-stop = o
-icon-pause = 
-icon-play = 
-icon-next = 
+icon-pause = 
+icon-play = 
+icon-next = 
 icon-seekf = >>
 
 icon-random = S
@@ -225,15 +236,15 @@ format-disconnected-padding = 1
 format-connected-underline = ${colors.white}
 format-disconnected-underline = ${colors.gray}
 
-label-connected =  %local_ip%
+label-connected =  
 label-disconnected = 
 label-disconnected-foreground = ${colors.gray}
 
 
 [module/date]
 type = internal/date
-date-alt =  %A  %H:%M 
-date =  %b/%d/%y  %H:%M 
+date-alt =   %A %H:%M 
+date =   %b/%d/%y %H:%M 
 interval = 5
 format-underline = ${colors.white}
 ;format-background = ${colors.black}
@@ -258,16 +269,15 @@ bar-volume-foreground-1 = ${colors.green}
 bar-volume-foreground-2 = ${colors.green}
 bar-volume-foreground-3 = ${colors.green}
 bar-volume-foreground-4 = ${colors.yellow}
-bar-volume-foreground-5 = ${colors.yellow}
-bar-volume-foreground-6 = ${colors.red}
+bar-volume-foreground-5 = ${colors.red}
 bar-volume-gradient = false
-bar-volume-indicator = │
-bar-volume-indicator-font = 1
+bar-volume-indicator = 
+bar-volume-indicator-font = 4
 bar-volume-indicator-foreground = ${colors.white}
-bar-volume-fill = |
-bar-volume-fill-font = 1
-bar-volume-empty = |
-bar-volume-empty-font = 1
+bar-volume-fill = 
+bar-volume-fill-font = 4
+bar-volume-empty = 
+bar-volume-empty-font = 4
 bar-volume-empty-foreground = ${colors.gray}
 
 

@@ -128,7 +128,7 @@ bindsym XF86AudioPrev exec ~/bin/media-keys.sh -r
 bindsym XF86AudioPlay exec ~/bin/media-keys.sh -u
 
 # now playing (cmus)
-bindsym Mod1+shift+n exec ~/proj/cmus-now-playing-notification/nowPlaying.sh
+#bindsym Mod1+shift+n exec ~/proj/cmus-now-playing-notification/nowPlaying.sh
 
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 3 +1%
 #bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 3 -1%
@@ -202,8 +202,8 @@ bar {
 	separator_symbol "//"
 	strip_workspace_numbers yes
 
-	position top
-	mode hide
+	position bottom
+	mode invisible
 
 	colors {
 	   
@@ -219,8 +219,8 @@ bar {
 	}
 }
 
-for_window [class="Thunar"] floating enable, border pixel
-bindsym Mod1+t exec Thunar
+for_window [class="Nautilus"] floating enable, border pixel
+bindsym Mod1+t exec nautilus
 
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id dunst
