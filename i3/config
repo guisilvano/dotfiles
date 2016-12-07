@@ -123,9 +123,10 @@ bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
-bindsym XF86AudioNext exec ~/bin/media-keys.sh -n
-bindsym XF86AudioPrev exec ~/bin/media-keys.sh -r
-bindsym XF86AudioPlay exec ~/bin/media-keys.sh -u
+
+bindsym XF86AudioNext exec "mpc --port=4200 next"
+bindsym XF86AudioPrev exec "mpc --port=4200 prev"
+bindsym XF86AudioPlay exec "mpc --port=4200 toggle"
 
 # now playing (cmus)
 #bindsym Mod1+shift+n exec ~/proj/cmus-now-playing-notification/nowPlaying.sh
@@ -142,16 +143,26 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym $left       resize shrink width 5 px or 5 ppt
-        bindsym $down       resize grow height 5 px or 5 ppt
-        bindsym $up         resize shrink height 5 px or 5 ppt
-        bindsym $right      resize grow width 5 px or 5 ppt
+        bindsym $left		    resize shrink width 5 px or 5 ppt
+        bindsym $down		    resize grow height 5 px or 5 ppt
+        bindsym $up		    resize shrink height 5 px or 5 ppt
+        bindsym $right		    resize grow width 5 px or 5 ppt
+        
+	bindsym Shift+$left	    resize shrink width 20 px or 20 ppt
+        bindsym Shift+$down	    resize grow height 20 px or 20 ppt
+        bindsym Shift+$up	    resize shrink height 20 px or 20 ppt
+        bindsym Shift+$right	    resize grow width 20 px or 20 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left        resize shrink width 5 px or 5 ppt
-        bindsym Down        resize grow height 5 px or 5 ppt
-        bindsym Up          resize shrink height 5 px or 5 ppt
-        bindsym Right       resize grow width 5 px or 5 ppt
+        bindsym Left		    resize shrink width 5 px or 5 ppt
+        bindsym Down		    resize grow height 5 px or 5 ppt
+        bindsym Up		    resize shrink height 5 px or 5 ppt
+        bindsym Right		    resize grow width 5 px or 5 ppt
+	
+	bindsym Shift+Left	    resize shrink width 20 px or 20 ppt
+        bindsym Shift+Down	    resize grow height 20 px or 20 ppt
+        bindsym Shift+Up	    resize shrink height 20 px or 20 ppt
+        bindsym Shift+Right	    resize grow width 20 px or 20 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -168,7 +179,6 @@ set $warn.color	#c795ae
 
 # SCREENSHOT
 bindcode 107 exec scrot -e 'mv $f /home/gui/Pictures/ss/$f'
-
 # ROFI PROGRAM LAUNCHER
 bindcode 133 exec rofi -show run -fullscreen -padding "155" -lines "4" -line-margin 10 -location 7  -font "Terminess Regular 10" -opacity "50" -bg "$bg.color" -bw 0 -bc black -hlbg "$alt.color" -bgalt "$bg.color" -fg "$fg.color" -hlfg "$fg.color" -separator-style solid -hide-scrollbar
 

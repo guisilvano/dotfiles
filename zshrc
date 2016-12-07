@@ -94,7 +94,7 @@ alias i3config='vim ~/.i3/config ~/.config/polybar/config ~/.config/dunst/dunstr
 # alias win"$@"='cs /mnt/c/Users/gui"$@"'
 alias grade='evince ~/Documents/grade.pdf'
 alias stdw='sudo shutdown now'
- 
+
 # script aliases
 #alias rm='dl'
 

@@ -30,7 +30,7 @@ padding-right = 1
 module-margin-right = 1
 module-margin-left = 0
 
-modules-right = filesystem battery date menu0
+modules-right = updates filesystem battery date menu0
 modules-center = mpd volume
 modules-left = i3 wlan eth cpu memory
 
@@ -96,7 +96,7 @@ label-empty-padding = 2
 
 [module/i3]
 type = internal/i3
-format = <label-state>
+format = <label-mode> <label-state>
 index-sort = true
 
 label-focused-font = 4
@@ -125,6 +125,7 @@ label-visible = 
 ;label-visible = %index%
 label-visible-foreground = ${colors.white}
 label-visible-padding = 1
+
 
 
 [module/mpd]
@@ -352,6 +353,11 @@ menu-0-2 =   cancel
 
 label-open =   
 label-close =
+
+[module/updates]
+type = custom/script
+
+exec = echo 
 
 
 [module/powermenu]
