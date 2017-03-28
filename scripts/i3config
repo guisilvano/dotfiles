@@ -1,0 +1,3 @@
+#!/bin/bash
+
+vim ~/.i3/config ~/.config/polybar/config ~/.config/dunst/dunstrc ~/.config/cava/config ~/.config/compton.conf ~/.config/rofi/config ~/.config/terminator/config ~/.zshrc ~/bin/i3config -p

@@ -1,14 +1,14 @@
 ;:set syn=dosini
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 100
+margin-bottom = 100
 
 
 [colors]
 white = #d1d1d1
 gray = #585858
-black = #090909
+black = #ce1d1d1d
 red = #c795ae
 blue = #95aec7
 yellow = #c7ae95
@@ -16,40 +16,52 @@ green = #aec795
 
 
 [bar/Bar]
-bottom = false
+bottom = true
 dock = false
 wm-restack = i3
-width = 100%
-height = 22
 
-enable-ipc = true
+fixed-center = true
+
+border-size = 2
+border-color = $00000000
+
+width = 100%
+height = 3%
+
+override-redirect = true
+offset-x = 5%
+offset-y = 1%
+radius = 0.0
+
+enable-ipc = false
 
 padding-left = 0
 padding-right = 1
 
-module-margin-right = 1
+module-margin-right = 0
 module-margin-left = 0
 
-modules-right = updates filesystem battery date menu0
-modules-center = mpd volume
-modules-left = i3 wlan eth cpu memory
+;amodules-right = updates date menu0
+;modules-center = mpd
+;modules-left = cpu memory filesystem
 
-background = #66090909
+modules-right = menu0
+modules-center = updates cpu date memory filesystem
+modules-left = mpd
+
+background = #001d1d1d
 foreground = ${colors.white}
 
-underline-size = 2
+overline-size = 2
+overline-color = ${colors.white}
+underline-size = 1
 underline-color = ${colors.white}
 
-tray-detached = false
-tray-position = right
-tray-offset-x = 
-tray-maxsize = 
-tray-padding = 
+font-0 = xos4terminus:size=10;0
+font-1 = FontAwesome:size=12;0
+font-2 = TakaoGothic:weight=bold:size=12;0
+font-3 = FontAwesome:size=12;0
 
-font-0 = terminus:size=8;0
-font-1 = FontAwesome:size=10;0
-font-2 = TakaoGothic:weight=bold:size=10;0
-font-3 = FontAwesome:size=8;0
 
 [module/xwindow]
 type = internal/xwindow
@@ -61,13 +73,15 @@ label-maxlen = 30
 type = internal/fs
 interval = 25
 
-mount-0 = /
-;mount-1 = /home
-;mount-2 = /invalid/mountpoint
 
-label-mounted =  %free%
+;mount-0 = /
+mount-0 = /home
+;mount-2 = /media/gui
+
+label-mounted =  %free%
 label-mounted-underline = ${colors.white}
 label-mounted-padding = 1
+label-mounted-background = ${colors.black}
 
 label-unmounted =
 label-unmounted-foreground = ${colors.black}
@@ -107,51 +121,53 @@ label-visible-font = 4
 label-focused = 
 ;label-focused = %index%
 ;label-focused-background = ${colors.gray}
-label-focused-padding = 1
+label-focused-padding = 0
 
 label-unfocused = 
 ;label-unfocused = %index%
-label-unfocused-padding = 1
+label-unfocused-padding = 0
 ;label-unfocused-background = ${colors.black}
 label-unfocused-underlinde = ${colors.white}
 
-label-urgent = 
+label-urgent = 
 ;label-urgent = %index%!
 ;label-urgent-background = ${colors.red}
-label-urgent-padding = 1
+label-urgent-padding = 0
 label-urgent-foreground = ${colors.red}
 
 label-visible = 
 ;label-visible = %index%
 label-visible-foreground = ${colors.white}
-label-visible-padding = 1
+label-visible-padding = 0
 
 
 
 [module/mpd]
 type = internal/mpd
 
-host = 127.0.0.1
+host = gui
 port = 4200
 
-intervel = 2
-
-format-online = <label-song> <icon-prev> <icon-play> <icon-pause> <icon-next> 
+;format-online = <label-song> <icon-prev> <icon-play> <icon-pause> <icon-next> 
+format-online = <label-song>
 format-offline = <label-offline>
 
-label-offline =  no music
+label-offline =  mpd is offline
 label-offline-foreground = ${colors.gray}
 
-label-song = %artist% - %title%
+label-song =  %artist% - %title% 
 label-song-maxlen = 95
 label-song-ellipsis = true
+;abel-song-background = ${colors.black}
+label-song-padding = 1
 
-icon-prev = 
+
+icon-prev = %{T4}
 icon-seekb = <<
 icon-stop = o
-icon-pause = 
-icon-play = 
-icon-next = 
+icon-pause = %{T4}
+icon-play = %{T4}
+icon-next = %{T4}
 icon-seekf = >>
 
 icon-random = S
@@ -197,8 +213,11 @@ ramp-coreload-underline = ${colors.white}
 type = internal/cpu
 interval = 2
 label = %{F${colors.white}  %percentage% %{F-}
+padding = 2
+
 label-underline = ${colors.white}
-padding= 2
+label-background = ${colors.black}
+;label-overline = ${colors.white}
 
 
 [module/memory]
@@ -208,10 +227,12 @@ interval = 2
 label = %{F${colors.white}  %percentage_used% %{F-}
 label-underline = ${colors.white}
 label-foreground = ${colors.white}
+label-background = ${colors.black}
+
 
 [module/wlan]
 type = internal/network
-interface = wlp12s0
+interface = enp2s0
 interval = 3.0
 
 format-connected-padding = 1
@@ -228,7 +249,7 @@ label-disconnected-foreground = ${colors.gray}
 
 [module/eth]
 type = internal/network
-interface = enp9s0
+interface = enp2s0
 interval = 3.0
 
 format-connected-padding = 1
@@ -247,10 +268,11 @@ type = internal/date
 date-alt =   %A %H:%M 
 date =   %b/%d/%y %H:%M 
 interval = 5
+
 format-underline = ${colors.white}
-;format-background = ${colors.black}
+format-background = ${colors.black}
 format-foreground = ${colors.white}
-format-padding = 1
+format-padding = 2
 
 
 [module/volume]
@@ -341,8 +363,11 @@ ramp-foreground = #55
 type = custom/menu
 
 format = <label-toggle> <menu>
-format-underline = ${colors.white}
+;format-underline = ${colors.white}
 format-padding = 1
+;format-margin = 1
+
+;format-background = ${colors.black}
 
 menu-0-0 =  shutdown
 menu-0-0-exec = shutdown now
@@ -351,38 +376,22 @@ menu-0-1-exec = shutdown -r now
 menu-0-2 =   cancel
 
 
-label-open =   
+label-open = 
 label-close =
 
 [module/updates]
 type = custom/script
 
-exec = echo 
+label-background = ${colors.black}
+label-padding = 1
+label-underline = ${colors.white}
 
 
-[module/powermenu]
-type = custom/menu
+exec = checkupdates | wc -l
+;tail = true
+interval = 900
 
-label-open =  power
-label-open-foreground = #e60053
-label-close =  cancel
-label-close-foreground = #e60053
-label-separator = |
-label-separator-foreground = #55
 
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+label  =  %output%
 
 ; vim:ft=dosini

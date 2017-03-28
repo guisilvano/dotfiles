@@ -4,12 +4,15 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH=/home/gui/.oh-my-zsh
 
+export VISUAL="vim"
+export XDG_USER_CONFIG_DIR=/home/gui/.config
 export MPD_HOST=/home/gui/.mpd/socket
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="avit"
+#avit
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -90,10 +93,9 @@ alias la='ls -A'
 alias l='ls -CF'
 alias wifi='nmtui-connect'
 alias rf='redshift &'
-alias i3config='vim ~/.i3/config ~/.config/polybar/config ~/.config/dunst/dunstrc ~/.config/cava/config ~/.config/compton.conf -p'
 # alias win"$@"='cs /mnt/c/Users/gui"$@"'
-alias grade='evince ~/Documents/grade.pdf'
 alias stdw='sudo shutdown now'
+alias openrct="wine .wine/drive_c/Program\ Files/OpenRCT2\ Launcher/OpenRCT2.exe"
 
 # script aliases
 #alias rm='dl'

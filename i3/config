@@ -1,7 +1,7 @@
 # i3 config file ~/.i3/config
 
 # system font
-font pango: Terminess PowerLine Regular 8
+font pango: xos4 Terminus Regular 10
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
@@ -14,9 +14,10 @@ set $right ccedilla
 floating_modifier Mod1
 
 # start a terminal
-bindsym Mod1+Return exec gnome-terminal
-bindsym Mod1+Shift+Return exec gnome-terminal --geometry=100x50
-for_window [class="Gnome-terminal"] floating enable, border pixel
+#bindsym Mod1+Return exec gnome-terminal
+bindsym Mod1+Return exec terminator --geometry=756x512
+#for_window [class="Terminator"] floating enable, border pixel
+#for_window [class="Gnome-terminal"] floating enable, border pixel
 
 # kill focused window
 bindsym Mod1+Shift+q kill
@@ -110,7 +111,7 @@ assign [class="Firefox"] 1:$ws1
 #assign [class="Gnome-terminal"] 2:$ws2
 #assign [class="Thunar"] 3:$ws3
 assign [class="Transmission"] 4:$ws4
-assign [class="Steam"] 5:$ws5
+assign [class="Steam"] 3:$ws3
 
 # reload the configuration file
 bindsym Mod1+Shift+c reload
@@ -124,9 +125,9 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
-bindsym XF86AudioNext exec "mpc --port=4200 next"
-bindsym XF86AudioPrev exec "mpc --port=4200 prev"
-bindsym XF86AudioPlay exec "mpc --port=4200 toggle"
+bindsym XF86AudioNext exec "mpc --host=gui --port=4200 next"
+bindsym XF86AudioPrev exec "mpc --host=gui --port=4200 prev"
+bindsym XF86AudioPlay exec "mpc --host=gui --port=4200 toggle"
 
 # now playing (cmus)
 #bindsym Mod1+shift+n exec ~/proj/cmus-now-playing-notification/nowPlaying.sh
@@ -180,22 +181,23 @@ set $warn.color	#c795ae
 # SCREENSHOT
 bindcode 107 exec scrot -e 'mv $f /home/gui/Pictures/ss/$f'
 # ROFI PROGRAM LAUNCHER
-bindcode 133 exec rofi -show run -fullscreen -padding "155" -lines "4" -line-margin 10 -location 7  -font "Terminess Regular 10" -opacity "50" -bg "$bg.color" -bw 0 -bc black -hlbg "$alt.color" -bgalt "$bg.color" -fg "$fg.color" -hlfg "$fg.color" -separator-style solid -hide-scrollbar
+bindcode 133 exec rofi -show run -fullscreen -padding "155" -lines "4" -line-margin 10 -color-enabled -font "xos4 Terminus Bold 10" -opacity "70" -bw 0 -separator-style solid -hide-scrollbar
 
 # WALLPAPER
-#exec_always --no-startup-id feh --bg-center --no-xinerama /home/gui/Pictures/wallpapersCYAN+MAGENTA/u92v3Mt.jpg
+set $wpfolder /home/gui/Pictures/wallpapers1
+# exec --no-startup-id feh --bg-center --no-xinerama $wpfolder/QHZiuGW.jpg
 
 # RANDOM WALLPAPER
-set $wpfolder wallpapers1
-# exec --no-startup-id feh --randomize --bg-fill /home/gui/Pictures/$wpfolder
-bindsym Mod1+shift+w exec feh --randomize --bg-fill /home/gui/Pictures/$wpfolder
+exec --no-startup-id feh --randomize --bg-fill $wpfolder
+bindsym Mod1+shift+w exec feh --randomize --bg-fill $wpfolder
 
-# class                 border	    backgr.	text	    indicator	child_border
-client.focused          $bd.color   $bg.color	$fg.color   $alt.color2	$bd.color
+# class                 border	    backgr.		text	    indicator	child_border
+#client.focused          $bd.color   $bg.color	$fg.color   $alt.color2	$bd.color
+client.focused			$alt.color  $bg.color	$fg.color   #484e50     #858585
 client.focused_inactive $alt.color  $bg.color	$fg.color   #484e50     $alt.color
-client.unfocused        #333333	    #222222	#888888	    #292d2e	$bg.color 
-client.urgent           #2f343a	    #900000	#ffffff	    #warn.color	$warn.color
-client.placeholder      #000000	    #0c0c0c	#ffffff	    #000000	#0c0c0c
+client.unfocused        $alt.color  $bg.color	$fg.color   #484e50     $alt.color
+client.urgent           #2f343a	    #900000		#ffffff	    #warn.color	$warn.color
+client.placeholder      #000000	    #0c0c0c		#ffffff	    #000000		#0c0c0c
 client.background       #ffffff
 
 #gaps
@@ -232,6 +234,6 @@ bar {
 for_window [class="Nautilus"] floating enable, border pixel
 bindsym Mod1+t exec nautilus
 
-exec --no-startup-id xfce4-power-manager
+exec --no-startup-id mpd
 exec --no-startup-id dunst
 exec --no-startup-id compton

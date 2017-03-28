@@ -1,5 +1,5 @@
 [global]
-    font = Terminess Powerline Regular 8
+    font = xos4 Terminus Regular 8
 
     # Allow a small subset of html markup in notifications and formats:
     #   <b>bold</b>
@@ -67,7 +67,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "500x5-30+20"
+    geometry = "500x5-5+5"
 
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
@@ -76,12 +76,12 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 0
+    transparency = 25
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
     # Set to 0 to disable.
-    idle_threshold = 10
+    idle_threshold = 1800
 
     # Which monitor should the notifications be displayed on.
     monitor = 0
