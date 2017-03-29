@@ -149,13 +149,13 @@ host = gui
 port = 4200
 
 ;format-online = <label-song> <icon-prev> <icon-play> <icon-pause> <icon-next> 
-format-online = <label-song>
+format-online = <icon-pause> <icon-play> <label-song>
 format-offline = <label-offline>
 
 label-offline =  mpd is offline
 label-offline-foreground = ${colors.gray}
 
-label-song =  %artist% - %title% 
+label-song = %artist% - %title% 
 label-song-maxlen = 95
 label-song-ellipsis = true
 ;abel-song-background = ${colors.black}
@@ -165,8 +165,8 @@ label-song-padding = 1
 icon-prev = %{T4}
 icon-seekb = <<
 icon-stop = o
-icon-pause = %{T4}
-icon-play = %{T4}
+icon-pause = %{T4}
+icon-play = %{T4}
 icon-next = %{T4}
 icon-seekf = >>
 
