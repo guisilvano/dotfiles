@@ -6,6 +6,11 @@ margin-bottom = 100
 
 
 [colors]
+
+fg = ${xrdb:color7}
+modfg = ${xrdb:color1}
+bg = ${xrdb:color0}
+
 white = #d1d1d1
 gray = #585858
 black = #ce1d1d1d
@@ -35,8 +40,8 @@ radius = 0.0
 
 enable-ipc = false
 
-padding-left = 0
-padding-right = 1
+padding-left = 1
+padding-right = 0
 
 module-margin-right = 0
 module-margin-left = 0
@@ -50,12 +55,12 @@ modules-center = updates cpu date memory filesystem
 modules-left = mpd
 
 background = #001d1d1d
-foreground = ${colors.white}
+foreground = ${colors.modfg}
 
 overline-size = 2
 overline-color = ${colors.white}
-underline-size = 1
-underline-color = ${colors.white}
+underline-size = 4
+underline-color = ${colors.modfg}
 
 font-0 = xos4terminus:size=10;0
 font-1 = FontAwesome:size=12;0
@@ -79,12 +84,12 @@ mount-0 = /home
 ;mount-2 = /media/gui
 
 label-mounted =  %free%
-label-mounted-underline = ${colors.white}
+label-mounted-underline = ${colors.modfg}
 label-mounted-padding = 1
-label-mounted-background = ${colors.black}
+label-mounted-background = ${colors.bg}
 
 label-unmounted =
-label-unmounted-foreground = ${colors.black}
+label-unmounted-foreground = ${colors.bg}
 
 
 [module/bspwm]
@@ -153,20 +158,20 @@ format-online = <icon-pause> <icon-play> <label-song>
 format-offline = <label-offline>
 
 label-offline =  mpd is offline
-label-offline-foreground = ${colors.gray}
+label-offline-foreground = ${colors.bg}
 
 label-song = %artist% - %title% 
 label-song-maxlen = 95
 label-song-ellipsis = true
 ;abel-song-background = ${colors.black}
-label-song-padding = 1
+label-song-padding = 0
 
 
 icon-prev = %{T4}
 icon-seekb = <<
 icon-stop = o
 icon-pause = %{T4}
-icon-play = %{T4}
+icon-play = %{T4}
 icon-next = %{T4}
 icon-seekf = >>
 
@@ -208,15 +213,15 @@ ramp-coreload-4 = ▅
 ramp-coreload-5 = ▆
 ramp-coreload-6 = ▇
 ramp-coreload-7 = █
-ramp-coreload-underline = ${colors.white}
+ramp-coreload-underline = ${colors.fg}
 
 type = internal/cpu
 interval = 2
-label = %{F${colors.white}  %percentage% %{F-}
+label = %{F${colors.fg}  %percentage% %{F-}
 padding = 2
 
-label-underline = ${colors.white}
-label-background = ${colors.black}
+label-underline = ${colors.modfg}
+label-background = ${colors.bg}
 ;label-overline = ${colors.white}
 
 
@@ -225,9 +230,9 @@ type = internal/memory
 interval = 2
 
 label = %{F${colors.white}  %percentage_used% %{F-}
-label-underline = ${colors.white}
-label-foreground = ${colors.white}
-label-background = ${colors.black}
+label-underline = ${colors.modfg}
+label-foreground = ${colors.fg}
+label-background = ${colors.bg}
 
 
 [module/wlan]
@@ -269,9 +274,9 @@ date-alt =   %A %H:%M
 date =   %b/%d/%y %H:%M 
 interval = 5
 
-format-underline = ${colors.white}
-format-background = ${colors.black}
-format-foreground = ${colors.white}
+format-underline = ${colors.modfg}
+format-background = ${colors.bg}
+;format-foreground = ${colors.fg}
 format-padding = 2
 
 
@@ -382,9 +387,9 @@ label-close =
 [module/updates]
 type = custom/script
 
-label-background = ${colors.black}
+label-background = ${colors.bg}
 label-padding = 1
-label-underline = ${colors.white}
+label-underline = ${colors.modfg}
 
 
 exec = checkupdates | wc -l

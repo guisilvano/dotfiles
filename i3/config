@@ -14,10 +14,10 @@ set $right ccedilla
 floating_modifier Mod1
 
 # start a terminal
-#bindsym Mod1+Return exec gnome-terminal
-bindsym Mod1+Return exec terminator --geometry=756x512
+bindsym Mod1+Return exec terminator
 #for_window [class="Terminator"] floating enable, border pixel
 #for_window [class="Gnome-terminal"] floating enable, border pixel
+#bindsym Mod1+Return exec "terminator --geometry=750x200"
 
 # kill focused window
 bindsym Mod1+Shift+q kill
@@ -171,12 +171,18 @@ mode "resize" {
 }
 
 # SET COLOR ALIASES
-set $bg.color	#1d1d1d
-set $fg.color	#d1d1d1
+#set $bg.color	#1d1d1d
+#set $fg.color	#d1d1d1
 set $bd.color	#d1d1d1
-set $alt.color	#585858
-set $alt.color2	#ae95c7
+#aset $alt.color	#585858
+#set $alt.color2	#ae95c7
 set $warn.color	#c795ae
+
+set_from_resource $fg.color i3wm.color1
+set_from_resource $bg.color i3wm.color0
+set_from_resource $bd.color i3wm.color1
+set_from_resource $alt.color i3wm.color2
+set_from_resource $alt.color2 i3wm.color5
 
 # SCREENSHOT
 bindcode 107 exec scrot -e 'mv $f /home/gui/Pictures/ss/$f'
@@ -184,25 +190,28 @@ bindcode 107 exec scrot -e 'mv $f /home/gui/Pictures/ss/$f'
 bindcode 133 exec rofi -show run -fullscreen -padding "155" -lines "4" -line-margin 10 -color-enabled -font "xos4 Terminus Bold 10" -opacity "70" -bw 0 -separator-style solid -hide-scrollbar
 
 # WALLPAPER
-set $wpfolder /home/gui/Pictures/wallpapers1
-# exec --no-startup-id feh --bg-center --no-xinerama $wpfolder/QHZiuGW.jpg
+set $wpfolder /home/gui/Pictures/wpp.flat/
+#exec --no-startup-id feh --bg-center --no-xinerama $wpfolder/QHZiuGW.jpg
+#exec --no-startup-id ~/Downloads/wal/wal -t -i $wpfolder
 
 # RANDOM WALLPAPER
 exec --no-startup-id feh --randomize --bg-fill $wpfolder
-bindsym Mod1+shift+w exec feh --randomize --bg-fill $wpfolder
+exec --no-startup-id ~/Downloads/wal/wal -t -i $wpfolder -o ~/.restart.polybar
+#bindsym Mod1+shift+w exec feh --randomize --bg-fill $wpfolder
+bindsym Mod1+shift+w exec ~/Downloads/wal/wal -t -i $wpfolder -o ~/.restart.polybar 
 
 # class                 border	    backgr.		text	    indicator	child_border
 #client.focused          $bd.color   $bg.color	$fg.color   $alt.color2	$bd.color
-client.focused			$alt.color  $bg.color	$fg.color   #484e50     #858585
-client.focused_inactive $alt.color  $bg.color	$fg.color   #484e50     $alt.color
-client.unfocused        $alt.color  $bg.color	$fg.color   #484e50     $alt.color
+client.focused			$alt.color  $bg.color	$fg.color   $alt.color2 $bd.color
+client.focused_inactive $alt.color  $bg.color	$fg.color   $alt.color2 $alt.color
+client.unfocused        $alt.color  $bg.color	$fg.color   $alt.color2  $alt.color
 client.urgent           #2f343a	    #900000		#ffffff	    #warn.color	$warn.color
 client.placeholder      #000000	    #0c0c0c		#ffffff	    #000000		#0c0c0c
 client.background       #ffffff
 
 #gaps
 new_window pixel
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 4
 gaps inner 4
 gaps outer 6
 

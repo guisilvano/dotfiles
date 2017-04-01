@@ -8,6 +8,10 @@ export VISUAL="vim"
 export XDG_USER_CONFIG_DIR=/home/gui/.config
 export MPD_HOST=/home/gui/.mpd/socket
 
+# Import colorscheme from 'wal'
+(~/Downloads/wal/wal -r &)
+source "$HOME/.cache/wal/colors.sh"
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
