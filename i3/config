@@ -190,13 +190,14 @@ bindcode 107 exec scrot -e 'mv $f /home/gui/Pictures/ss/$f'
 bindcode 133 exec rofi -show run -fullscreen -padding "155" -lines "4" -line-margin 10 -color-enabled -font "xos4 Terminus Bold 10" -opacity "70" -bw 0 -separator-style solid -hide-scrollbar
 
 # WALLPAPER
-set $wpfolder /home/gui/Pictures/wpp.flat/
-#exec --no-startup-id feh --bg-center --no-xinerama $wpfolder/QHZiuGW.jpg
-#exec --no-startup-id ~/Downloads/wal/wal -t -i $wpfolder
+set $wpfolder /home/gui/Pictures/wpp.ALL/
+set $defaultwp /home/gui/Pictures/wpp.flat/88OKebO.jpg
+#exec --no-startup-id feh --bg-center --no-xinerama $defaultwp
+exec --no-startup-id sleep 0.5 && ~/Downloads/wal/wal -t -i $defaultwp -o ~/.restart.polybar
 
 # RANDOM WALLPAPER
-exec --no-startup-id feh --randomize --bg-fill $wpfolder
-exec --no-startup-id ~/Downloads/wal/wal -t -i $wpfolder -o ~/.restart.polybar
+#exec --no-startup-id feh --randomize --bg-fill $wpfolder
+#exec --no-startup-id ~/Downloads/wal/wal -r -o ~/.restart.polybar
 #bindsym Mod1+shift+w exec feh --randomize --bg-fill $wpfolder
 bindsym Mod1+shift+w exec ~/Downloads/wal/wal -t -i $wpfolder -o ~/.restart.polybar 
 
@@ -210,7 +211,7 @@ client.placeholder      #000000	    #0c0c0c		#ffffff	    #000000		#0c0c0c
 client.background       #ffffff
 
 #gaps
-new_window pixel
+#new_window pixel
 for_window [class="^.*"] border pixel 4
 gaps inner 4
 gaps outer 6
@@ -243,6 +244,7 @@ bar {
 for_window [class="Nautilus"] floating enable, border pixel
 bindsym Mod1+t exec nautilus
 
+exec ~/.restart.polybar
 exec --no-startup-id mpd
 exec --no-startup-id dunst
 exec --no-startup-id compton
