@@ -8,12 +8,15 @@ margin-bottom = 100
 [colors]
 
 fg = ${xrdb:color7}
-modfg = ${xrdb:color1}
+modfg = ${xrdb:color3}
+alt = ${xrdb:color2}
+alt2 = ${xrdb:color1}
 bg = ${xrdb:color0}
+
 
 white = #d1d1d1
 gray = #585858
-black = #ce1d1d1d
+black = #ff121212
 red = #c795ae
 blue = #95aec7
 yellow = #c7ae95
@@ -25,23 +28,25 @@ bottom = true
 dock = false
 wm-restack = i3
 
+monitor = HDMI-0
+
 fixed-center = true
 
-border-size = 2
-border-color = $00000000
+border-size = 10
+border-color = #00aaaaaa
 
 width = 100%
-height = 3%
+height = 30
 
 override-redirect = true
-offset-x = 5%
-offset-y = 1%
-radius = 0.0
+;offset-x = 5%
+;offset-y = 1%
+radius = 5
 
 enable-ipc = false
 
-padding-left = 1
-padding-right = 0
+padding-left = 2
+padding-right = 2
 
 module-margin-right = 0
 module-margin-left = 0
@@ -50,23 +55,25 @@ module-margin-left = 0
 ;modules-center = mpd
 ;modules-left = cpu memory filesystem
 
-modules-right = menu0
-modules-center = updates cpu date memory filesystem
-modules-left = mpd
+modules-right = mpd i3 menu0
+modules-center = date
+modules-left = cpu cputemp memory updates
 
-background = #001d1d1d
+separator = "      "
+
+background = ${colors.bg}
 foreground = ${colors.modfg}
 
-overline-size = 2
-overline-color = ${colors.white}
-underline-size = 4
-underline-color = ${colors.modfg}
+;overline-size = 2
+;overline-color = ${colors.white}
+;underline-size = 4
+;underline-color = ${colors.modfg}
 
-font-0 = xos4terminus:size=10;0
-font-1 = FontAwesome:size=12;0
-font-2 = TakaoGothic:weight=bold:size=12;0
-font-3 = FontAwesome:size=12;0
-
+font-0 = micro:weight=regular:size=9;3
+font-1 = FontAwesome:size=10;3
+font-2 = IPAPgothic:weight=regular:size=10;3
+font-3 = FontAwesome 5 Free:size=10:style=Solid;3
+font-4 = unifont:size=10;3
 
 [module/xwindow]
 type = internal/xwindow
@@ -81,36 +88,15 @@ interval = 25
 
 ;mount-0 = /
 mount-0 = /home
-;mount-2 = /media/gui
+mount-1 = /home/gui/HDD
 
 label-mounted =  %free%
-label-mounted-underline = ${colors.modfg}
+;label-mounted-underline = ${colors.modfg}
 label-mounted-padding = 1
-label-mounted-background = ${colors.bg}
+;label-mounted-background = ${colors.bg}
 
 label-unmounted =
-label-unmounted-foreground = ${colors.bg}
-
-
-[module/bspwm]
-type = internal/bspwm
-ws-icon-default = x
-
-label-active = %index%
-label-active-background = #ee333333
-label-active-underline= #cc333333
-label-active-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-urgent = %index%
-label-urgent-background = #bd2c40
-label-urgent-padding = 2
-
-label-empty = %index%
-label-empty-foreground = #55
-label-empty-padding = 2
+;label-unmounted-foreground = ${colors.bg}
 
 
 [module/i3]
@@ -118,32 +104,21 @@ type = internal/i3
 format = <label-mode> <label-state>
 index-sort = true
 
-label-focused-font = 4
-label-unfocused-font = 4
-label-urgent-font = 4
-label-visible-font = 4 
+label-focused = %index%
+label-focused-padding = 1
+label-focused-foreground = ${colors.bg}
+label-focused-background = ${colors.modfg}
 
-label-focused = 
-;label-focused = %index%
-;label-focused-background = ${colors.gray}
-label-focused-padding = 0
-
-label-unfocused = 
-;label-unfocused = %index%
-label-unfocused-padding = 0
+label-unfocused = %index%
+label-unfocused-padding = 1
 ;label-unfocused-background = ${colors.black}
-label-unfocused-underlinde = ${colors.white}
 
-label-urgent = 
-;label-urgent = %index%!
-;label-urgent-background = ${colors.red}
-label-urgent-padding = 0
-label-urgent-foreground = ${colors.red}
+label-urgent = %index%
+label-urgent-background = ${colors.alt}
+label-urgent-padding = 1
 
-label-visible = 
-;label-visible = %index%
-label-visible-foreground = ${colors.white}
-label-visible-padding = 0
+label-visible = %index%
+label-visible-padding = 1
 
 
 
@@ -154,26 +129,26 @@ host = gui
 port = 4200
 
 ;format-online = <label-song> <icon-prev> <icon-play> <icon-pause> <icon-next> 
-format-online = <icon-pause> <icon-play> <label-song>
+format-online = <label-song>
 format-offline = <label-offline>
 
-label-offline =  mpd is offline
-label-offline-foreground = ${colors.bg}
+label-offline = mpd is offline
+;label-offline-foreground = ${colors.bg}
 
-label-song = %artist% - %title% 
-label-song-maxlen = 95
-label-song-ellipsis = true
-;abel-song-background = ${colors.black}
-label-song-padding = 0
+label-song = "%artist% - %title%"
+label-song-maxlen = 120
+label-song-ellipsis = false
+;label-song-background = ${colors.black}
+;label-song-padding = 1
 
 
-icon-prev = %{T4}
-icon-seekb = <<
-icon-stop = o
-icon-pause = %{T4}
-icon-play = %{T4}
-icon-next = %{T4}
-icon-seekf = >>
+;icon-prev = 
+;icon-seekb = <<
+;icon-stop = o
+;icon-pause = %{T4}
+;icon-play = %{T4}
+;icon-next = %{T4}
+;icon-seekf = >>
 
 icon-random = S
 icon-repeat = R
@@ -217,11 +192,10 @@ ramp-coreload-underline = ${colors.fg}
 
 type = internal/cpu
 interval = 2
-label = %{F${colors.fg}  %percentage% %{F-}
-padding = 2
+label = " %percentage%%"
 
-label-underline = ${colors.modfg}
-label-background = ${colors.bg}
+;label-underline = ${colors.modfg}
+;label-background = ${colors.bg}
 ;label-overline = ${colors.white}
 
 
@@ -229,10 +203,11 @@ label-background = ${colors.bg}
 type = internal/memory
 interval = 2
 
-label = %{F${colors.white}  %percentage_used% %{F-}
-label-underline = ${colors.modfg}
-label-foreground = ${colors.fg}
-label-background = ${colors.bg}
+label = " %percentage_used%%"
+;label = RAM %percentage_used%%
+;label-underline = ${colors.modfg}
+;label-foreground = ${colors.modfg}
+;label-background = ${colors.bg}
 
 
 [module/wlan]
@@ -270,14 +245,14 @@ label-disconnected-foreground = ${colors.gray}
 
 [module/date]
 type = internal/date
-date-alt =   %A %H:%M 
-date =   %b/%d/%y %H:%M 
+date-alt = %A   %H:%M 
+date = %b/%d/%y   %H:%M
 interval = 5
 
-format-underline = ${colors.modfg}
-format-background = ${colors.bg}
+;format-underline = ${colors.modfg}
+;format-background = ${colors.bg}
 ;format-foreground = ${colors.fg}
-format-padding = 2
+;format-padding = 2
 
 
 [module/volume]
@@ -344,24 +319,14 @@ animation-charging-framerate = 500
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 0
+; thermal-zone = 0
 warn-temperature = 65
 
-format = <label>
-format-underline = ${colors.white}
+format = <label> 
 format-warn = <label-warn>
-format-warn-underline = ${colors.red}
 
-format-padding = 1
-format-warn-padidng = 1
-
-label =  %temperature%
-label-warn =  %temperature%
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = #55
+label = TEMP %temperature%
+label-warn = TEMP %temperature%!!!
 
 
 [module/menu0]
@@ -374,9 +339,9 @@ format-padding = 1
 
 ;format-background = ${colors.black}
 
-menu-0-0 =  shutdown
+menu-0-0 = " shutdown "
 menu-0-0-exec = shutdown now
-menu-0-1 =  restart
+menu-0-1 = " restart "
 menu-0-1-exec = shutdown -r now
 menu-0-2 =   cancel
 
@@ -387,16 +352,43 @@ label-close =
 [module/updates]
 type = custom/script
 
-label-background = ${colors.bg}
-label-padding = 1
-label-underline = ${colors.modfg}
-
+;label-background = ${colors.bg}
+;label-padding = 0
+;label-underline = ${colors.modfg}
 
 exec = checkupdates | wc -l
 ;tail = true
-interval = 900
+interval = 60
+
+label  = " %output%"
 
 
-label  =  %output%
+[module/cputemp]
+type = custom/script
+
+;label-background = ${colors.bg}
+;label-padding = 0
+;label-underline = ${colors.modfg}
+
+exec = sensors | grep --max-count=1 "CPU Temperature:" | awk '{print substr($0,22,2)}'
+;tail = true
+interval = 10
+
+label = " %output%°C"
+
+
+[module/gputemp]
+type = custom/script
+
+;label-background = ${colors.bg}
+;label-padding = 0
+;label-underline = ${colors.modfg}
+
+exec = nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits
+;tail = true
+interval = 10
+
+label = "GPU %output%°C"
+
 
 ; vim:ft=dosini

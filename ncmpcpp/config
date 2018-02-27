@@ -517,7 +517,7 @@ color1 = 1
 #
 color2 = 9
 #
-main_window_highlight_color = 255
+main_window_highlight_color = 7
 #
 progressbar_color = 6
 #
